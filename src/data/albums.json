@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Speed Metal Symphony",
+    "year": 1987,
+    "label": "Shrapnel Records",
+    "catalog_number": "SH-1023",
+    "release_date": "1987",
+    "cover_art_credit": "Shrapnel Records",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Speed_Metal_Symphony",
+    "tracks": [
+      { "number": 1, "title": "Where My Fortune Lies" },
+      { "number": 2, "title": "The Ninja" },
+      { "number": 3, "title": "Where the Wind Blows" },
+      { "number": 4, "title": "Concerto" },
+      { "number": 5, "title": "Sword of the Warrior" },
+      { "number": 6, "title": "Savage" },
+      { "number": 7, "title": "Desert Island" },
+      { "number": 8, "title": "Speed Metal Symphony" }
+    ],
+    "personnel": {
+      "guitars": ["Marty Friedman", "Jason Becker"],
+      "vocals": ["Peter Marrino"],
+      "keyboards": ["Jimmy Waldo"],
+      "drums": ["Atma Anur"],
+      "bass": ["Marty Friedman"]
+    }
+  },
+  {
+    "title": "Go Off!",
+    "year": 1988,
+    "label": "Shrapnel Records",
+    "catalog_number": "SH-1036",
+    "release_date": "1988",
+    "cover_art_credit": "Shrapnel Records",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Go_Off!",
+    "tracks": [
+      { "number": 1, "title": "Stranger" },
+      { "number": 2, "title": "Breathless" },
+      { "number": 3, "title": "Go Off!" },
+      { "number": 4, "title": "Black Cat" },
+      { "number": 5, "title": "Floating World" },
+      { "number": 6, "title": "Imaginary Window" },
+      { "number": 7, "title": "Distractions" },
+      { "number": 8, "title": "Sword of the Warrior II" },
+      { "number": 9, "title": "Unsung Heroes" }
+    ],
+    "personnel": {
+      "guitars": ["Marty Friedman", "Jason Becker"],
+      "vocals": ["Shane Phillip"],
+      "keyboards": ["Jimmy Waldo"],
+      "drums": ["Atma Anur"],
+      "bass": ["Marty Friedman"]
+    }
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "videos": [
+    {
+      "id": "9byfTJZBBAM",
+      "title": "Speed Metal Symphony (Full Album)",
+      "description": "Cacophony's debut album Speed Metal Symphony (1987) in full.",
+      "type": "album"
+    },
+    {
+      "id": "oPr8zFdZLaA",
+      "title": "Go Off! (Full Album)",
+      "description": "Cacophony's second album Go Off! (1988) in full.",
+      "type": "album"
+    },
+    {
+      "id": "hCuMWrfXG4E",
+      "title": "The Ninja",
+      "description": "Live performance of The Ninja from Speed Metal Symphony.",
+      "type": "live"
+    },
+    {
+      "id": "7Kd8YourFxQ",
+      "title": "Concerto",
+      "description": "Marty Friedman and Jason Becker performing Concerto.",
+      "type": "performance"
+    }
+  ]
+}
