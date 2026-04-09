@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Jason Becker",
+    "born": "July 22, 1969",
+    "birthplace": "Richmond, California, USA",
+    "role": "Lead guitarist, songwriter",
+    "instruments": ["guitar"],
+    "active_in_band": "1986–1990",
+    "bio": "Jason Becker is an American neoclassical metal guitarist who rose to fame as a member of Cacophony alongside Marty Friedman. He was diagnosed with ALS (amyotrophic lateral sclerosis) in 1990 and lost the ability to play guitar, but continued composing music through eye movements and a communication system developed by his father. He went on to record the solo album 'Perpetual Burn' (1988) and briefly replaced Steve Vai in David Lee Roth's band before his illness progressed.",
+    "post_band": "David Lee Roth Band (1990–1991), solo career"
+  },
+  {
+    "name": "Marty Friedman",
+    "born": "December 8, 1962",
+    "birthplace": "Washington, D.C., USA",
+    "role": "Lead guitarist, songwriter",
+    "instruments": ["guitar"],
+    "active_in_band": "1986–1993",
+    "bio": "Marty Friedman is an American guitarist best known as a founding member of Cacophony and as the lead guitarist of Megadeth from 1990 to 2000. His unique playing style blends Western shred guitar techniques with Eastern and exotic scales. After leaving Megadeth, he relocated to Japan where he became a prominent television personality and continued his solo career.",
+    "post_band": "Megadeth (1990–2000), solo career, television personality in Japan"
+  }
+]

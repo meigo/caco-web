@@ -1,0 +1,11 @@
+{
+  "name": "cacophony",
+  "version": "1.0.0",
+  "description": "Cacophony band website data",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

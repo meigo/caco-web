@@ -1,0 +1,53 @@
+[
+  {
+    "title": "Speed Metal Symphony",
+    "year": 1987,
+    "label": "Shrapnel Records",
+    "type": "studio album",
+    "tracklist": [
+      "Shredder",
+      "Concerto",
+      "Savage",
+      "Speed Metal Symphony",
+      "Where My Fortune Lies",
+      "Rock Fever",
+      "Charade",
+      "Floating World"
+    ]
+  },
+  {
+    "title": "Go Off!",
+    "year": 1988,
+    "label": "Roadrunner Records",
+    "type": "studio album",
+    "tracklist": [
+      "Black Cat",
+      "Thunder and Lightning",
+      "Magical Sound Shower",
+      "Stranger",
+      "The Ninja",
+      "Sinner's Waltz",
+      "Siren Song",
+      "Our World Is on Fire",
+      "Go Off!",
+      "Anytime"
+    ]
+  },
+  {
+    "title": "Mountain Jam",
+    "year": 1992,
+    "label": "Roadrunner Records",
+    "type": "live album",
+    "tracklist": [
+      "Shredder",
+      "Concerto",
+      "Where My Fortune Lies",
+      "Speed Metal Symphony",
+      "Black Cat",
+      "Thunder and Lightning",
+      "The Ninja",
+      "Sinner's Waltz",
+      "Go Off!"
+    ]
+  }
+]
