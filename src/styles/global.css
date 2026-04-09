@@ -1,0 +1,251 @@
+/* =============================================================
+   Cacophony — Dark Metal Global Theme
+   80s shred / heavy metal aesthetic
+   ============================================================= */
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  /* Background palette — near-black with deep-shadow layering */
+  --color-bg:           #0a0a0a;
+  --color-bg-surface:   #111111;
+  --color-bg-raised:    #1a1a1a;
+  --color-bg-overlay:   #222222;
+
+  /* Metallic accent — gold, blood-red, steel */
+  --color-gold:         #c9a227;
+  --color-gold-light:   #e8c547;
+  --color-gold-dark:    #8a6e18;
+  --color-red:          #8b0000;
+  --color-red-bright:   #cc0000;
+  --color-steel:        #7a8c99;
+  --color-steel-light:  #a8bbc4;
+
+  /* Text */
+  --color-text:         #d4c9b0;
+  --color-text-muted:   #7a7060;
+  --color-text-heading: #e8c547;
+  --color-text-link:    #c9a227;
+  --color-text-link-hover: #e8c547;
+
+  /* Borders & dividers */
+  --color-border:       #2a2a2a;
+  --color-border-accent: #8a6e18;
+
+  /* Typography */
+  --font-heading:       'Metal Mania', 'UnifrakturMaguntia', 'Cinzel', serif;
+  --font-display:       'Cinzel', serif;
+  --font-body:          'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-mono:          'Courier New', Courier, monospace;
+
+  /* Spacing scale */
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2.5rem;
+  --space-2xl:  4rem;
+
+  /* Motion */
+  --transition-fast:    150ms ease;
+  --transition-base:    250ms ease;
+}
+
+/* ── Responsive Reset / Normalize ──────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* ── Base Styles ────────────────────────────────────────────── */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  min-height: 100vh;
+  /* Subtle noise texture via repeating gradient — evokes aged vinyl / LP sleeve */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+}
+
+/* ── Headings ───────────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 8px rgba(201, 162, 39, 0.4),
+    2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+/* ── Links ──────────────────────────────────────────────────── */
+a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold-dark);
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-text-link-hover);
+  text-decoration-color: var(--color-gold-light);
+  outline: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Paragraphs & Body Text ─────────────────────────────────── */
+p {
+  max-width: 70ch;
+  margin-bottom: var(--space-md);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Lists ──────────────────────────────────────────────────── */
+ul,
+ol {
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+}
+
+/* ── Blockquote ─────────────────────────────────────────────── */
+blockquote {
+  border-left: 3px solid var(--color-gold-dark);
+  padding-left: var(--space-md);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: var(--space-lg) 0;
+}
+
+/* ── Code ───────────────────────────────────────────────────── */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+code {
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  color: var(--color-steel-light);
+}
+
+pre {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-accent);
+  border-radius: 4px;
+  padding: var(--space-md);
+  overflow-x: auto;
+  margin: var(--space-md) 0;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── Horizontal Rule ────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border-accent);
+  margin: var(--space-xl) 0;
+  opacity: 0.5;
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: var(--color-gold-dark);
+  color: var(--color-bg);
+}
+
+/* ── Scrollbar (Webkit) ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
