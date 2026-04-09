@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Marty Friedman",
+    "role": "Lead Guitar",
+    "birth_date": "1962-12-08",
+    "nationality": "American",
+    "bio": "Marty Friedman is an American guitarist best known for his work with Cacophony and as the lead guitarist of Megadeth from 1990 to 2000. A self-taught musician, Friedman developed a highly distinctive melodic style influenced by Eastern scales and classical music. After Cacophony disbanded, he joined Megadeth and appeared on several landmark albums including 'Rust in Peace' and 'Countdown to Extinction'. He later relocated to Japan, where he became a prominent figure in the local music and entertainment industry.",
+    "photo_credit": "Wikipedia / Various",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Marty_Friedman",
+    "instruments": ["Guitar"],
+    "associated_acts": ["Cacophony", "Megadeth", "Hawaii"]
+  },
+  {
+    "name": "Jason Becker",
+    "role": "Lead Guitar",
+    "birth_date": "1969-07-22",
+    "nationality": "American",
+    "bio": "Jason Becker is an American guitarist widely regarded as one of the most gifted shred guitarists of his generation. He rose to fame as co-founder of Cacophony alongside Marty Friedman. After Cacophony disbanded, Becker was hired by David Lee Roth and recorded the album 'A Little Ain't Enough' (1991). In 1990, he was diagnosed with ALS (amyotrophic lateral sclerosis), which eventually left him unable to play guitar or speak. Despite his illness, he continued composing music using an eye-tracking communication system, and has released several solo albums.",
+    "photo_credit": "Wikipedia / Various",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Jason_Becker",
+    "instruments": ["Guitar"],
+    "associated_acts": ["Cacophony", "David Lee Roth"]
+  }
+]
