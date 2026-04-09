@@ -1,10 +1,461 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import albums from '@data/albums.json';
+import band from '@data/band.json';
+
+const featuredAlbums = albums.slice(0, 2);
 ---
 
-<BaseLayout title="Cacophony">
+<BaseLayout title="Cacophony — Guitar Virtuosity Unleashed">
   <main>
-    <h1>Cacophony</h1>
-    <p>Welcome to the official Cacophony website.</p>
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-strings">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div class="string" style={`--i: ${i}`}></div>
+          ))}
+        </div>
+      </div>
+      <div class="hero-content">
+        <p class="hero-label">San Francisco, {band.formation_year}–{band.disbandment_year}</p>
+        <h1 class="hero-title">
+          <span class="hero-title-main">Cacophony</span>
+        </h1>
+        <p class="hero-tagline">Guitar virtuosity unleashed</p>
+        <div class="hero-genres">
+          {band.genres.map((g) => <span class="genre-tag">{g}</span>)}
+        </div>
+        <div class="hero-ctas">
+          <a href="/history" class="btn btn-primary">Our Story</a>
+          <a href="/members" class="btn btn-secondary">The Duo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Band intro -->
+    <section class="intro" aria-label="About Cacophony">
+      <div class="container">
+        <h2 class="section-title">The Band</h2>
+        <p class="intro-text">{band.bio}</p>
+      </div>
+    </section>
+
+    <!-- Featured albums -->
+    <section class="albums" aria-label="Featured Albums">
+      <div class="container">
+        <h2 class="section-title">Discography</h2>
+        <div class="album-grid">
+          {featuredAlbums.map((album) => (
+            <a href="/discography" class="album-card" aria-label={`${album.title} (${album.year}) — view discography`}>
+              <div class="album-art" aria-hidden="true">
+                <div class="album-art-inner">
+                  <span class="album-year">{album.year}</span>
+                </div>
+              </div>
+              <div class="album-info">
+                <h3 class="album-title">{album.title}</h3>
+                <p class="album-meta">{album.year} · {album.label}</p>
+                <ul class="album-tracks" aria-label="Track listing">
+                  {album.tracks.slice(0, 3).map((track) => (
+                    <li>{track.number}. {track.title}</li>
+                  ))}
+                  {album.tracks.length > 3 && (
+                    <li class="more-tracks">+{album.tracks.length - 3} more tracks</li>
+                  )}
+                </ul>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="albums-cta">
+          <a href="/discography" class="btn btn-primary">Full Discography</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAs -->
+    <section class="explore" aria-label="Explore">
+      <div class="container">
+        <h2 class="section-title">Explore</h2>
+        <div class="explore-grid">
+          <a href="/history" class="explore-card">
+            <div class="explore-icon" aria-hidden="true">&#9876;</div>
+            <h3>History</h3>
+            <p>Trace the rise of the world's fastest guitar duo, from formation to their legendary recordings.</p>
+          </a>
+          <a href="/members" class="explore-card">
+            <div class="explore-icon" aria-hidden="true">&#9835;</div>
+            <h3>Members</h3>
+            <p>Meet Marty Friedman and Jason Becker — two virtuosos who redefined the limits of heavy metal guitar.</p>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </BaseLayout>
+
+<style>
+  /* ── Design tokens ── */
+  :root {
+    --c-bg: #0a0a0c;
+    --c-surface: #111116;
+    --c-surface-2: #18181f;
+    --c-border: #2a2a38;
+    --c-accent: #c0392b;
+    --c-accent-bright: #e74c3c;
+    --c-gold: #d4a017;
+    --c-text: #e8e8f0;
+    --c-muted: #7a7a96;
+    --c-string: rgba(192, 57, 43, 0.35);
+    --font-heading: 'Georgia', 'Times New Roman', serif;
+    --font-body: system-ui, -apple-system, sans-serif;
+    --max-w: 1100px;
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--c-bg); color: var(--c-text); font-family: var(--font-body); line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ── Layout helpers ── */
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--c-accent);
+    color: #fff;
+    border-color: var(--c-accent);
+  }
+  .btn-primary:hover {
+    background: var(--c-accent-bright);
+    border-color: var(--c-accent-bright);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--c-text);
+    border-color: var(--c-border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent-bright);
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--c-text);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 2.5rem;
+    height: 2px;
+    background: var(--c-accent);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 6rem 1.5rem;
+  }
+
+  /* CSS art background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, #1a0505 0%, var(--c-bg) 65%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(192, 57, 43, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 57, 43, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(600px) rotateX(20deg) scaleY(1.4);
+    transform-origin: bottom center;
+  }
+  .hero-glow {
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(192, 57, 43, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Animated guitar strings */
+  .hero-strings {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .string {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(8% + var(--i) * 14%);
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--c-string) 30%, var(--c-string) 70%, transparent);
+    opacity: 0.6;
+    animation: vibrate 3s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.4s);
+  }
+  @keyframes vibrate {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    25% { transform: translateX(1.5px); opacity: 0.8; }
+    75% { transform: translateX(-1.5px); opacity: 0.8; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+  }
+  .hero-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 14vw, 11rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .hero-title-main {
+    display: block;
+    background: linear-gradient(135deg, #fff 30%, #c0392b 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(192, 57, 43, 0.4));
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-style: italic;
+    color: var(--c-muted);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .genre-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--c-border);
+    color: var(--c-muted);
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── Intro ── */
+  .intro {
+    padding: 5rem 0;
+    background: var(--c-surface);
+    border-top: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .intro-text {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--c-muted);
+    max-width: 720px;
+    line-height: 1.8;
+  }
+
+  /* ── Albums ── */
+  .albums {
+    padding: 5rem 0;
+  }
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .album-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    transition: border-color 0.2s, transform 0.2s;
+    overflow: hidden;
+  }
+  .album-card:hover {
+    border-color: var(--c-accent);
+    transform: translateY(-3px);
+  }
+  .album-art {
+    aspect-ratio: 1;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        var(--c-surface-2) 0px,
+        var(--c-surface-2) 1px,
+        transparent 1px,
+        transparent 12px
+      ),
+      linear-gradient(135deg, #0f0507, #1a0a0a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--c-border);
+    position: relative;
+  }
+  .album-art::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(192, 57, 43, 0.2) 0%, transparent 60%);
+  }
+  .album-art-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .album-year {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(192, 57, 43, 0.5);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .album-info {
+    padding: 1.25rem 1.5rem 1.5rem;
+    flex: 1;
+  }
+  .album-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--c-text);
+  }
+  .album-meta {
+    font-size: 0.8rem;
+    color: var(--c-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .album-tracks {
+    font-size: 0.82rem;
+    color: var(--c-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border-top: 1px solid var(--c-border);
+    padding-top: 0.75rem;
+  }
+  .album-tracks li { padding: 0.15rem 0; }
+  .more-tracks {
+    color: var(--c-accent);
+    font-style: italic;
+  }
+  .albums-cta { text-align: center; }
+
+  /* ── Explore ── */
+  .explore {
+    padding: 5rem 0 6rem;
+    background: var(--c-surface);
+    border-top: 1px solid var(--c-border);
+  }
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .explore-card {
+    display: block;
+    padding: 2rem;
+    background: var(--c-surface-2);
+    border: 1px solid var(--c-border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .explore-card:hover {
+    border-color: var(--c-accent);
+    background: #13131a;
+  }
+  .explore-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--c-accent);
+  }
+  .explore-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    color: var(--c-text);
+  }
+  .explore-card p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.7;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero { min-height: 100svh; padding: 4rem 1rem; }
+    .string { display: none; }
+    .string:nth-child(-n+3) { display: block; }
+    .album-grid { grid-template-columns: 1fr; }
+    .explore-grid { grid-template-columns: 1fr; }
+  }
+</style>
