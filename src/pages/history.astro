@@ -1,0 +1,427 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import band from '../data/band.json';
+import members from '../data/members.json';
+import albums from '../data/albums.json';
+---
+
+<BaseLayout
+  title="History"
+  description="The full story of Cacophony — from formation in 1986 San Francisco to their enduring legacy in neoclassical shred metal."
+>
+  <main class="history-page">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>The Story of Cacophony</h1>
+        <p class="hero-sub">{band.active_years} &mdash; {band.origin}</p>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section" aria-labelledby="timeline-heading">
+      <div class="container">
+        <h2 id="timeline-heading">Timeline</h2>
+        <ol class="timeline" role="list">
+
+          <li class="timeline-item">
+            <span class="timeline-year">1986</span>
+            <div class="timeline-content">
+              <h3>Formation</h3>
+              <p>
+                Cacophony was formed in San Francisco, California, by guitarists
+                <strong>Marty Friedman</strong> and <strong>Jason Becker</strong> — two of the
+                most technically gifted players of their era. The duo had met through mutual
+                connections in the Bay Area shred scene and quickly recognised a shared vision
+                for combining blistering speed with melodic sophistication.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-year">1987</span>
+            <div class="timeline-content">
+              <h3>Debut Album: <em>Speed Metal Symphony</em></h3>
+              <p>
+                Released on <strong>Shrapnel Records</strong>, <em>Speed Metal Symphony</em>
+                announced Cacophony to the world. The album showcased the twin-guitar interplay
+                of Friedman and Becker alongside vocalist Peter Marrino, keyboardist Jimmy Waldo,
+                and drummer Atma Anur. Tracks like &ldquo;The Ninja&rdquo; and the title piece
+                became touchstones of the neoclassical shred movement.
+              </p>
+              <ul class="track-list" aria-label="Speed Metal Symphony track listing">
+                {albums[0].tracks.map(t => (
+                  <li><span class="track-num">{t.number}.</span> {t.title}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-year">1988</span>
+            <div class="timeline-content">
+              <h3>Second Album: <em>Go Off!</em></h3>
+              <p>
+                The follow-up record, <em>Go Off!</em>, pushed the band&rsquo;s compositional
+                ambitions further. With Shane Phillip on vocals and continued contributions from
+                Waldo and Anur, the album demonstrated greater dynamic range — balancing technical
+                fireworks with melodic depth. &ldquo;Floating World&rdquo; and &ldquo;Imaginary
+                Window&rdquo; highlighted the band&rsquo;s growing sophistication.
+              </p>
+              <ul class="track-list" aria-label="Go Off! track listing">
+                {albums[1].tracks.map(t => (
+                  <li><span class="track-num">{t.number}.</span> {t.title}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-year">1989</span>
+            <div class="timeline-content">
+              <h3>Disbandment</h3>
+              <p>
+                After three years and two landmark records, Cacophony disbanded in 1989. Both
+                Friedman and Becker pursued solo careers and high-profile opportunities that had
+                opened as a direct result of Cacophony&rsquo;s impact. Friedman went on to join
+                Megadeth, while Becker was recruited by David Lee Roth.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-year">1990+</span>
+            <div class="timeline-content">
+              <h3>Legacy &amp; After</h3>
+              <p>
+                In 1990, Jason Becker was diagnosed with ALS (amyotrophic lateral sclerosis).
+                The disease eventually robbed him of the ability to play guitar or speak, yet he
+                continued composing music using an eye-tracking communication system — a testament
+                to his extraordinary musical spirit. Cacophony&rsquo;s two albums remained
+                in print and continued to inspire successive generations of guitarists worldwide.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- Guitar Virtuosity -->
+    <section class="section section-alt" aria-labelledby="style-heading">
+      <div class="container">
+        <h2 id="style-heading">Guitar Virtuosity &amp; Neoclassical Shred Style</h2>
+        <p>
+          Cacophony occupied a unique space in the 1980s metal landscape. Friedman and Becker
+          shared a grounding in classical harmony and counterpoint that set them apart from peers
+          who relied purely on pentatonic blues patterns. Their approach — often described as
+          <em>neoclassical shred</em> — drew on Baroque and Romantic-era compositional techniques
+          and applied them at breakneck tempos.
+        </p>
+        <p>
+          Key hallmarks of their style included:
+        </p>
+        <ul class="feature-list">
+          <li><strong>Sweep picking</strong> — fluid arpeggios across multiple strings at high speed</li>
+          <li><strong>Alternate picking</strong> — precise, metronomic picking for scalar runs</li>
+          <li><strong>Harmonic minor and diminished scales</strong> — lending an Eastern and classical flavour</li>
+          <li><strong>Two-guitar interplay</strong> — intricate melodic counterpoint between Friedman and Becker</li>
+          <li><strong>Dynamic contrast</strong> — moving fluidly between aggressive shred passages and lyrical phrasing</li>
+        </ul>
+        <p>
+          Marty Friedman developed a highly personal vibrato and an affinity for exotic scales
+          influenced by Japanese and Middle Eastern music. Jason Becker, the younger of the two,
+          was already being hailed as a prodigy with a tone and expressiveness beyond his years.
+          Together they created a sound greater than the sum of its parts.
+        </p>
+      </div>
+    </section>
+
+    <!-- Members -->
+    <section class="section" aria-labelledby="members-heading">
+      <div class="container">
+        <h2 id="members-heading">The Guitarists</h2>
+        <div class="members-grid">
+          {members.map(member => (
+            <article class="member-card">
+              <h3>{member.name}</h3>
+              <p class="member-role">{member.role}</p>
+              <p>{member.bio}</p>
+              <a
+                href={member.wikipedia_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="wiki-link"
+              >
+                Wikipedia &rarr;
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Influences & Legacy -->
+    <section class="section section-alt" aria-labelledby="legacy-heading">
+      <div class="container">
+        <h2 id="legacy-heading">Influences &amp; Legacy</h2>
+
+        <h3>Influences</h3>
+        <p>
+          Both Friedman and Becker cited a wide range of influences that shaped Cacophony&rsquo;s
+          distinctive sound:
+        </p>
+        <ul class="feature-list">
+          <li><strong>Yngwie Malmsteen</strong> — pioneer of neoclassical metal guitar who established the template both men built upon</li>
+          <li><strong>Johann Sebastian Bach &amp; Niccolò Paganini</strong> — classical composers whose harmonic language permeated Cacophony&rsquo;s compositions</li>
+          <li><strong>Eddie Van Halen</strong> — revolutionary rock guitarist who redefined what was possible on the instrument</li>
+          <li><strong>Japanese &amp; Eastern music</strong> — exotic scales and melodic sensibilities, particularly influential on Friedman</li>
+        </ul>
+
+        <h3>Legacy</h3>
+        <p>
+          Despite their brief existence, Cacophony left an indelible mark on heavy metal and
+          guitar music at large. They helped codify the neoclassical shred genre, demonstrating
+          that technical virtuosity and compositional depth were not mutually exclusive. Their
+          two albums on Shrapnel Records remain essential listening for students of guitar
+          and metal history alike.
+        </p>
+        <p>
+          Marty Friedman&rsquo;s subsequent work with Megadeth — including the landmark
+          <em>Rust in Peace</em> (1990) — brought neoclassical sensibilities to a mainstream
+          metal audience. Jason Becker&rsquo;s personal story of perseverance in the face of
+          ALS became an inspiration far beyond the guitar world, immortalised in the 2012
+          documentary <em>Jason Becker: Not Dead Yet</em>.
+        </p>
+        <p>
+          Cacophony&rsquo;s influence continues to reverberate through the playing of guitarists
+          who cite Friedman and Becker as formative inspirations, ensuring that the band&rsquo;s
+          brief but brilliant flame burns on.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* ── Layout ── */
+  .history-page {
+    min-height: calc(100vh - var(--nav-height));
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(160deg, var(--color-surface) 0%, var(--color-bg) 100%);
+    border-bottom: 1px solid var(--color-border);
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-sub {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-alt {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .section p {
+    color: var(--color-text);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    list-style: none;
+    position: relative;
+    padding-left: 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(5.5rem - 5px);
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid var(--color-bg);
+  }
+
+  .timeline-year {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    padding-top: 0.2rem;
+    text-align: right;
+  }
+
+  .timeline-content h3 {
+    margin-top: 0;
+  }
+
+  /* ── Track List ── */
+  .track-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.25rem 1.5rem;
+    margin: 0.75rem 0 0;
+    padding: 0.75rem 1rem;
+    background: rgba(200, 168, 75, 0.05);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .track-list li {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .track-num {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Feature List ── */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature-list li {
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .feature-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  /* ── Members Grid ── */
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .member-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .member-card h3 {
+    margin-top: 0;
+    color: var(--color-accent);
+    font-size: 1.15rem;
+  }
+
+  .member-role {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .wiki-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 560px) {
+    .timeline::before {
+      left: 4rem;
+    }
+
+    .timeline-item {
+      grid-template-columns: 3.5rem 1fr;
+    }
+
+    .timeline-item::before {
+      left: calc(4rem - 5px);
+    }
+
+    .timeline-year {
+      font-size: 0.8rem;
+    }
+  }
+</style>
