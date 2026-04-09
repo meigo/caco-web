@@ -1,0 +1,15 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "import-notation": "string",
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "property-no-vendor-prefix": null,
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)((-{1,2}|_)[a-z0-9]+)*$",
+      {
+        "message": "Expected class selector to be kebab-case or BEM"
+      }
+    ]
+  }
+}
