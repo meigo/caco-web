@@ -1,0 +1,469 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import albums from '@data/albums.json';
+
+const albumDescriptions: Record<string, { style: string; significance: string }> = {
+  'Speed Metal Symphony': {
+    style:
+      'A blistering debut that fused neoclassical harmony with shred-metal velocity. Twin guitars weave through harmonic minor runs and sweep-picked arpeggios, anchored by Peter Marrino\'s soaring vocals and Jimmy Waldo\'s keyboards.',
+    significance:
+      'Announced Cacophony to the world and helped codify the neoclassical shred genre. Tracks like "The Ninja" and the monumental title suite became touchstones for generations of guitarists.',
+  },
+  'Go Off!': {
+    style:
+      'The sophomore record shows greater compositional ambition — balancing ferocious technical passages with lyrical, melodic depth. Shane Phillip\'s versatile vocals and expanded dynamic range push the band\'s sound into new territory.',
+    significance:
+      'Demonstrated that Cacophony were more than a technical showcase: "Floating World" and "Imaginary Window" reveal genuine emotional depth beneath the virtuosity, cementing their legacy as composers, not just players.',
+  },
+};
+---
+
+<BaseLayout
+  title="Discography"
+  description="The complete Cacophony discography — Speed Metal Symphony (1987) and Go Off! (1988), two landmark albums of neoclassical shred metal."
+>
+  <main class="discography-page">
+
+    <!-- Hero -->
+    <section class="hero" aria-label="Discography hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+      </div>
+      <div class="hero-content">
+        <p class="hero-label">Studio Albums</p>
+        <h1 class="hero-title">Discography</h1>
+        <p class="hero-sub">Two albums. Two years. A legacy that endures.</p>
+      </div>
+    </section>
+
+    <!-- Albums -->
+    <section class="section" aria-labelledby="albums-heading">
+      <div class="container">
+        <h2 id="albums-heading" class="sr-only">Albums</h2>
+
+        {albums.map((album) => {
+          const desc = albumDescriptions[album.title];
+          return (
+            <article class="album-card" aria-label={`${album.title}, ${album.year}`}>
+
+              <!-- Art placeholder -->
+              <div class="album-art" aria-hidden="true">
+                <div class="album-art-inner">
+                  <span class="art-year">{album.year}</span>
+                  <span class="art-title">{album.title}</span>
+                  <span class="art-label">{album.label}</span>
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="album-details">
+                <div class="album-header">
+                  <h2 class="album-title">{album.title}</h2>
+                  <dl class="album-meta">
+                    <div class="meta-row">
+                      <dt>Released</dt>
+                      <dd>{album.release_date}</dd>
+                    </div>
+                    <div class="meta-row">
+                      <dt>Label</dt>
+                      <dd>{album.label}</dd>
+                    </div>
+                    <div class="meta-row">
+                      <dt>Catalog</dt>
+                      <dd>{album.catalog_number}</dd>
+                    </div>
+                  </dl>
+                </div>
+
+                {desc && (
+                  <div class="album-desc">
+                    <p><strong>Style:</strong> {desc.style}</p>
+                    <p><strong>Significance:</strong> {desc.significance}</p>
+                  </div>
+                )}
+
+                <!-- Track listing -->
+                <div class="tracklist-wrapper">
+                  <h3 class="tracklist-heading">Track Listing</h3>
+                  <ol class="track-list" aria-label={`${album.title} track listing`}>
+                    {album.tracks.map((track) => (
+                      <li class="track-item">
+                        <span class="track-num">{track.number}</span>
+                        <span class="track-title">{track.title}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                <!-- Personnel -->
+                <div class="personnel-wrapper">
+                  <h3 class="personnel-heading">Personnel</h3>
+                  <ul class="personnel-list">
+                    <li><strong>Guitars:</strong> {album.personnel.guitars.join(', ')}</li>
+                    <li><strong>Bass:</strong> {album.personnel.bass.join(', ')}</li>
+                    <li><strong>Vocals:</strong> {album.personnel.vocals.join(', ')}</li>
+                    <li><strong>Keyboards:</strong> {album.personnel.keyboards.join(', ')}</li>
+                    <li><strong>Drums:</strong> {album.personnel.drums.join(', ')}</li>
+                  </ul>
+                </div>
+
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* ── Local tokens ── */
+  :root {
+    --d-bg: #0a0a0c;
+    --d-surface: #111116;
+    --d-surface-2: #18181f;
+    --d-border: #2a2a38;
+    --d-accent: #c0392b;
+    --d-accent-bright: #e74c3c;
+    --d-gold: #d4a017;
+    --d-text: #e8e8f0;
+    --d-muted: #7a7a96;
+    --d-max-w: 1100px;
+    --d-font-heading: 'Georgia', 'Times New Roman', serif;
+  }
+
+  .discography-page {
+    min-height: calc(100vh - var(--nav-height, 64px));
+  }
+
+  /* ── Screen-reader only ── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: var(--d-max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    padding: 6rem 1.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, #1a0505 0%, var(--d-bg) 65%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(192, 57, 43, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 57, 43, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(600px) rotateX(20deg) scaleY(1.4);
+    transform-origin: bottom center;
+  }
+
+  .hero-glow {
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(192, 57, 43, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--d-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-title {
+    font-family: var(--d-font-heading);
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 30%, #c0392b 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-style: italic;
+    color: var(--d-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Section ── */
+  .section {
+    padding: 4rem 0 6rem;
+  }
+
+  /* ── Album card ── */
+  .album-card {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid var(--d-border);
+  }
+
+  .album-card:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  /* ── Album art placeholder ── */
+  .album-art {
+    aspect-ratio: 1;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        var(--d-surface-2) 0px,
+        var(--d-surface-2) 1px,
+        transparent 1px,
+        transparent 12px
+      ),
+      linear-gradient(135deg, #0f0507, #1a0a0a);
+    border: 1px solid var(--d-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .album-art::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(192, 57, 43, 0.25) 0%, transparent 65%);
+  }
+
+  .album-art-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .art-year {
+    font-family: var(--d-font-heading);
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(192, 57, 43, 0.45);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .art-title {
+    font-family: var(--d-font-heading);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 700;
+    color: rgba(232, 232, 240, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .art-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(122, 122, 150, 0.7);
+    margin-top: 0.25rem;
+  }
+
+  /* ── Album details ── */
+  .album-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 0.5rem;
+  }
+
+  .album-header {
+    border-bottom: 1px solid var(--d-border);
+    padding-bottom: 1.25rem;
+  }
+
+
+  .album-title {
+    font-family: var(--d-font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--d-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .album-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 0.4rem;
+    align-items: baseline;
+    font-size: 0.82rem;
+  }
+
+  .meta-row dt {
+    color: var(--d-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .meta-row dd {
+    color: var(--d-text);
+  }
+
+  /* ── Album description ── */
+  .album-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .album-desc p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--d-muted);
+  }
+
+  .album-desc p strong {
+    color: var(--d-text);
+  }
+
+  /* ── Track listing ── */
+  .tracklist-heading,
+  .personnel-heading {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--d-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .track-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.2rem 2rem;
+    padding: 1rem;
+    background: rgba(192, 57, 43, 0.04);
+    border: 1px solid var(--d-border);
+  }
+
+  .track-item {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    padding: 0.2rem 0;
+    font-size: 0.875rem;
+  }
+
+  .track-num {
+    color: var(--d-accent);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    min-width: 1.25rem;
+  }
+
+  .track-title {
+    color: var(--d-text);
+  }
+
+  /* ── Personnel ── */
+  .personnel-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    color: var(--d-muted);
+  }
+
+  .personnel-list strong {
+    color: var(--d-text);
+    margin-right: 0.25rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .album-card {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .album-art {
+      max-width: 320px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 4rem 1rem 3.5rem;
+    }
+
+    .track-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
