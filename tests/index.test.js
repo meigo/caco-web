@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import albums from '../data/albums.json' assert { type: 'json' };
-import band from '../data/band.json' assert { type: 'json' };
+import albums from '../src/data/albums.json' assert { type: 'json' };
+import band from '../src/data/band.json' assert { type: 'json' };
 
 describe('Homepage data integration', () => {
   describe('featured albums', () => {
