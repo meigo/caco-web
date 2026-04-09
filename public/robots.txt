@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meigo.github.io/caco-web/sitemap-index.xml

@@ -24,7 +24,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:4321',
+    url: 'http://localhost:4321/caco-web/',
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,
   },

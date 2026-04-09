@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+const BASE = '/caco-web';
+
 test.describe('BaseLayout', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto(`${BASE}/`);
   });
 
   test.describe('SEO meta tags', () => {
@@ -53,13 +55,13 @@ test.describe('BaseLayout', () => {
       await expect(nav.getByRole('link', { name: 'Media' })).toBeVisible();
     });
 
-    test('Home link points to /', async ({ page }) => {
+    test('Home link points to base path', async ({ page }) => {
       const toggle = page.locator('.nav-toggle');
       if (await toggle.isVisible()) {
         await toggle.click();
       }
       const homeLink = page.locator('#nav-menu').getByRole('link', { name: 'Home' });
-      await expect(homeLink).toHaveAttribute('href', '/');
+      await expect(homeLink).toHaveAttribute('href', `${BASE}/`);
     });
 
     test('navigation links have correct hrefs', async ({ page }) => {
@@ -68,10 +70,10 @@ test.describe('BaseLayout', () => {
         await toggle.click();
       }
       const nav = page.locator('#nav-menu');
-      await expect(nav.getByRole('link', { name: 'History' })).toHaveAttribute('href', '/history');
-      await expect(nav.getByRole('link', { name: 'Members' })).toHaveAttribute('href', '/members');
-      await expect(nav.getByRole('link', { name: 'Discography' })).toHaveAttribute('href', '/discography');
-      await expect(nav.getByRole('link', { name: 'Media' })).toHaveAttribute('href', '/media');
+      await expect(nav.getByRole('link', { name: 'History' })).toHaveAttribute('href', `${BASE}/history`);
+      await expect(nav.getByRole('link', { name: 'Members' })).toHaveAttribute('href', `${BASE}/members`);
+      await expect(nav.getByRole('link', { name: 'Discography' })).toHaveAttribute('href', `${BASE}/discography`);
+      await expect(nav.getByRole('link', { name: 'Media' })).toHaveAttribute('href', `${BASE}/media`);
     });
   });
 
@@ -113,6 +115,7 @@ test.describe('BaseLayout', () => {
 
     test('hamburger toggle button is visible on mobile', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(`${BASE}/`);
       await expect(page.locator('.nav-toggle')).toBeVisible();
     });
 

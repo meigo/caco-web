@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+const BASE = '/caco-web';
+
 test.describe('Members page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/members');
+    await page.goto(`${BASE}/members`);
   });
 
   test('renders at /members', async ({ page }) => {
@@ -110,12 +112,16 @@ test.describe('Members page', () => {
   test.describe('Layout and accessibility', () => {
     test('inherits BaseLayout header with nav', async ({ page }) => {
       await expect(page.getByRole('banner')).toBeVisible();
+      const toggle = page.locator('.nav-toggle');
+      if (await toggle.isVisible()) {
+        await toggle.click();
+      }
       await expect(page.locator('#nav-menu').getByRole('link', { name: 'Members' })).toHaveAttribute('aria-current', 'page');
     });
 
     test('page has no horizontal scroll on mobile', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto('/members');
+      await page.goto(`${BASE}/members`);
       const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
       const viewportWidth = page.viewportSize()?.width ?? 0;
       expect(bodyWidth).toBeLessThanOrEqual(viewportWidth);
