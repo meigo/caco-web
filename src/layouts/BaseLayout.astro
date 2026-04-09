@@ -15,12 +15,13 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/history', label: 'History' },
-  { href: '/members', label: 'Members' },
-  { href: '/discography', label: 'Discography' },
-  { href: '/media', label: 'Media' },
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/history`, label: 'History' },
+  { href: `${base}/members`, label: 'Members' },
+  { href: `${base}/discography`, label: 'Discography' },
+  { href: `${base}/media`, label: 'Media' },
 ];
 
 const memberLinks = [
@@ -60,7 +61,7 @@ const currentYear = new Date().getFullYear();
   <body>
     <header>
       <nav aria-label="Main navigation">
-        <a href="/" class="logo" aria-label="Cacophony — Home">
+        <a href={`${base}/`} class="logo" aria-label="Cacophony — Home">
           <span class="logo-text">CACOPHONY</span>
         </a>
 
