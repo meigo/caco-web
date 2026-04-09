@@ -1,9 +1,35 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'Cacophony — the legendary shred metal duo of Marty Friedman and Jason Becker.',
+  ogImage,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/history', label: 'History' },
+  { href: '/members', label: 'Members' },
+  { href: '/discography', label: 'Discography' },
+  { href: '/media', label: 'Media' },
+];
+
+const memberLinks = [
+  { href: 'https://en.wikipedia.org/wiki/Marty_Friedman', label: 'Marty Friedman' },
+  { href: 'https://en.wikipedia.org/wiki/Jason_Becker', label: 'Jason Becker' },
+  { href: 'https://en.wikipedia.org/wiki/Atma_Anur', label: 'Atma Anur' },
+];
+
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -12,9 +38,249 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+
+    <title>{title} | Cacophony</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | Cacophony`} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Cacophony`} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
   </head>
   <body>
+    <header>
+      <nav aria-label="Main navigation">
+        <a href="/" class="logo" aria-label="Cacophony — Home">
+          <span class="logo-text">CACOPHONY</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
+        <ul id="nav-menu" role="list">
+          {navLinks.map(({ href, label }) => (
+            <li>
+              <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
     <slot />
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-members">
+          <span>Members:</span>
+          <ul role="list">
+            {memberLinks.map(({ href, label }) => (
+              <li>
+                <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p class="footer-copy">
+          &copy; {currentYear} Cacophony. Fan site — not officially affiliated.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
+
+<style>
+  /* ── Header ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    height: var(--nav-height);
+  }
+
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .logo:hover {
+    color: var(--color-accent-hover);
+  }
+
+  nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  nav ul a {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  nav ul a:hover,
+  nav ul a[aria-current='page'] {
+    color: var(--color-accent);
+    background-color: rgba(200, 168, 75, 0.08);
+  }
+
+  /* ── Hamburger ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: 2rem 1.5rem;
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-members {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .footer-members ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    list-style: none;
+    justify-content: center;
+  }
+
+  .footer-members a {
+    font-size: 0.875rem;
+  }
+
+  .footer-copy {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    nav ul {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0.5rem 0;
+    }
+
+    nav ul.open {
+      display: flex;
+    }
+
+    nav ul a {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement | null;
+  const menu = document.getElementById('nav-menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close menu when a nav link is clicked
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
