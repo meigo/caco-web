@@ -128,4 +128,37 @@ test.describe('Gallery page', () => {
       expect(label?.trim()).toBeTruthy();
     }
   });
+
+  test('uses monospace heading font matching index page style', async ({ page }) => {
+    const heading = page.getByRole('heading', { name: /Gallery/i });
+    const fontFamily = await heading.evaluate(
+      (el) => window.getComputedStyle(el).fontFamily
+    );
+    expect(fontFamily.toLowerCase()).toMatch(/space mono|courier/);
+  });
+
+  test('uses dark monochrome background matching index page style', async ({ page }) => {
+    const bg = await page.evaluate(
+      () => window.getComputedStyle(document.body).backgroundColor
+    );
+    // Should be near-black (rgb(0,0,0) or very dark), not navy/purple
+    expect(bg).toMatch(/rgb\(0,\s*0,\s*0\)|rgb\(10,\s*10,\s*10\)/);
+  });
+
+  test('section title underline accent is gray, not red', async ({ page }) => {
+    const sectionTitle = page.locator('.section-title').first();
+    await expect(sectionTitle).toBeVisible();
+    const accentColor = await sectionTitle.evaluate((el) => {
+      const pseudo = window.getComputedStyle(el, '::after');
+      return pseudo.backgroundColor;
+    });
+    // Gray accent: not red (rgb values where R >> G,B)
+    const match = accentColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    if (match) {
+      const [, r, g, b] = match.map(Number);
+      // Red would have r > 150 and g,b < 80; gray has roughly equal r,g,b
+      const isRed = r > 150 && g < 80 && b < 80;
+      expect(isRed).toBe(false);
+    }
+  });
 });
