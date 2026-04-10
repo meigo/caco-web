@@ -1,0 +1,358 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import bandPhoto from '../assets/band_becker_friedman_1989.jpg';
+import martyLive01 from '../assets/marty_friedman_live_01.jpg';
+import martyLive04 from '../assets/marty_friedman_live_04.jpg';
+import martyTokyo2009 from '../assets/marty_friedman_tokyo_2009.jpg';
+import martyIbanezTokyo from '../assets/marty_friedman_ibanez_tokyo.jpg';
+import martySetsubun from '../assets/marty_friedman_setsubun_2018.png';
+import beckerCarvinGuitar from '../assets/jason_becker_carvin_guitar.jpg';
+
+interface GalleryPhoto {
+  src: ImageMetadata;
+  alt: string;
+  caption: string;
+  credit: string;
+  license: string;
+  subject: 'band' | 'marty' | 'jason';
+}
+
+const photos: GalleryPhoto[] = [
+  {
+    src: bandPhoto,
+    alt: 'Jason Becker and Marty Friedman together in 1989, Becker holding his blue Carvin guitar',
+    caption: 'Jason Becker & Marty Friedman, 1989',
+    credit: 'Press photo',
+    license: 'CC BY 3.0',
+    subject: 'band',
+  },
+  {
+    src: martyLive01,
+    alt: 'Marty Friedman performing live on stage with his Jackson signature guitar',
+    caption: 'Marty Friedman — live in the USA, 2016',
+    credit: 'Photo: Hiroshi Yamazaki',
+    license: 'CC BY-SA 4.0',
+    subject: 'marty',
+  },
+  {
+    src: martyLive04,
+    alt: 'Marty Friedman performing live on stage in Los Angeles',
+    caption: 'Marty Friedman — Los Angeles, January 2017',
+    credit: 'Photo: Hiroshi Yamazaki',
+    license: 'CC BY-SA 4.0',
+    subject: 'marty',
+  },
+  {
+    src: martyTokyo2009,
+    alt: 'Marty Friedman in Tokyo, 2009',
+    caption: 'Marty Friedman — Tokyo, March 2009',
+    credit: 'Photo: Takaaki Henmi',
+    license: 'CC BY-SA 4.0',
+    subject: 'marty',
+  },
+  {
+    src: martyIbanezTokyo,
+    alt: 'Marty Friedman holding an Ibanez guitar in Tokyo, 2009',
+    caption: 'Marty Friedman with Ibanez — Tokyo, 2009',
+    credit: 'Photo: Takaaki Henmi',
+    license: 'CC BY-SA 4.0',
+    subject: 'marty',
+  },
+  {
+    src: martySetsubun,
+    alt: 'Marty Friedman at a traditional Japanese Setsubun festival event in Tokyo, February 2018',
+    caption: 'Marty Friedman — Setsubun, Tokyo, 2018',
+    credit: 'Photo: Nesnad',
+    license: 'CC BY-SA 4.0',
+    subject: 'marty',
+  },
+  {
+    src: beckerCarvinGuitar,
+    alt: 'Carvin JB200C Jason Becker Tribute Guitar displayed at the 2014 NAMM Show',
+    caption: 'Carvin JB200C — Jason Becker Tribute Guitar, NAMM 2014',
+    credit: 'Photo: ArtBrom',
+    license: 'CC BY-SA 2.0',
+    subject: 'jason',
+  },
+];
+
+const bandPhotos = photos.filter(p => p.subject === 'band');
+const martyPhotos = photos.filter(p => p.subject === 'marty');
+const jasonPhotos = photos.filter(p => p.subject === 'jason');
+---
+
+<BaseLayout
+  title="Gallery"
+  description="Black and white photographs of Cacophony — Marty Friedman, Jason Becker, and the band that defined neoclassical shred metal."
+>
+  <main>
+    <!-- Page hero -->
+    <section class="page-hero" aria-label="Gallery — page header">
+      <div class="container">
+        <p class="page-label">Cacophony</p>
+        <h1 class="page-title">Gallery</h1>
+        <p class="page-sub">Photographs of the band and its members.</p>
+      </div>
+    </section>
+
+    <!-- Band photos -->
+    {bandPhotos.length > 0 && (
+      <section class="gallery-section" aria-label="Band photos">
+        <div class="container">
+          <h2 class="section-title">The Band</h2>
+          <div class="photo-grid photo-grid--feature">
+            {bandPhotos.map(photo => (
+              <figure class="photo-card" aria-label={photo.caption}>
+                <div class="photo-wrap">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    class="photo-img"
+                    widths={[400, 800, 1200]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
+                    loading="eager"
+                  />
+                </div>
+                <figcaption class="photo-caption">
+                  <span class="caption-text">{photo.caption}</span>
+                  <span class="caption-credit">{photo.credit} · {photo.license}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Marty Friedman photos -->
+    {martyPhotos.length > 0 && (
+      <section class="gallery-section gallery-section--alt" aria-label="Marty Friedman photos">
+        <div class="container">
+          <h2 class="section-title">Marty Friedman</h2>
+          <div class="photo-grid">
+            {martyPhotos.map(photo => (
+              <figure class="photo-card" aria-label={photo.caption}>
+                <div class="photo-wrap">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    class="photo-img"
+                    widths={[300, 600, 900]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="photo-caption">
+                  <span class="caption-text">{photo.caption}</span>
+                  <span class="caption-credit">{photo.credit} · {photo.license}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Jason Becker photos -->
+    {jasonPhotos.length > 0 && (
+      <section class="gallery-section" aria-label="Jason Becker photos">
+        <div class="container">
+          <h2 class="section-title">Jason Becker</h2>
+          <div class="photo-grid">
+            {jasonPhotos.map(photo => (
+              <figure class="photo-card" aria-label={photo.caption}>
+                <div class="photo-wrap">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    class="photo-img"
+                    widths={[300, 600, 900]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="photo-caption">
+                  <span class="caption-text">{photo.caption}</span>
+                  <span class="caption-credit">{photo.credit} · {photo.license}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  /* ── Design tokens ── */
+  :root {
+    --c-bg: #0a0a0c;
+    --c-surface: #111116;
+    --c-surface-2: #18181f;
+    --c-border: #2a2a38;
+    --c-accent: #c0392b;
+    --c-gold: #d4a017;
+    --c-text: #e8e8f0;
+    --c-muted: #7a7a96;
+    --font-heading: 'Georgia', 'Times New Roman', serif;
+    --font-body: system-ui, -apple-system, sans-serif;
+    --max-w: 1100px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--c-bg); color: var(--c-text); font-family: var(--font-body); line-height: 1.6; }
+
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--c-text);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 2.5rem;
+    height: 2px;
+    background: var(--c-accent);
+  }
+
+  /* ── Page hero ── */
+  .page-hero {
+    padding: 5rem 0 3.5rem;
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(192, 57, 43, 0.12) 0%, transparent 65%),
+      var(--c-bg);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .page-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: 0.75rem;
+  }
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 40%, #c0392b 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+  .page-sub {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--c-muted);
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Gallery sections ── */
+  .gallery-section {
+    padding: 5rem 0;
+  }
+  .gallery-section--alt {
+    background: var(--c-surface);
+    border-top: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  /* ── Photo grid ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .photo-grid--feature {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
+
+  /* ── Photo card ── */
+  .photo-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+  .gallery-section--alt .photo-card {
+    background: var(--c-surface-2);
+  }
+  .photo-card:hover {
+    border-color: var(--c-accent);
+  }
+
+  /* ── Photo image ── */
+  .photo-wrap {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--c-surface-2);
+  }
+  .photo-grid--feature .photo-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Render all photos in black & white */
+    filter: grayscale(100%);
+    transition: transform 0.4s ease, filter 0.3s ease;
+  }
+  .photo-card:hover .photo-img {
+    transform: scale(1.03);
+    filter: grayscale(80%);
+  }
+
+  /* ── Caption ── */
+  .photo-caption {
+    padding: 0.875rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-top: 1px solid var(--c-border);
+  }
+  .caption-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--c-text);
+    letter-spacing: 0.02em;
+  }
+  .caption-credit {
+    font-size: 0.72rem;
+    color: var(--c-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .photo-grid { grid-template-columns: 1fr; }
+    .page-hero { padding: 3.5rem 0 2.5rem; }
+    .gallery-section { padding: 3rem 0; }
+  }
+</style>
