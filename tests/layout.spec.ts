@@ -41,7 +41,7 @@ test.describe('BaseLayout', () => {
       await expect(logo).toContainText('CACOPHONY');
     });
 
-    test('has all five navigation links', async ({ page }) => {
+    test('has all six navigation links', async ({ page }) => {
       // Open the hamburger menu if visible (mobile viewport)
       const toggle = page.locator('.nav-toggle');
       if (await toggle.isVisible()) {
@@ -53,6 +53,7 @@ test.describe('BaseLayout', () => {
       await expect(nav.getByRole('link', { name: 'Members' })).toBeVisible();
       await expect(nav.getByRole('link', { name: 'Discography' })).toBeVisible();
       await expect(nav.getByRole('link', { name: 'Media' })).toBeVisible();
+      await expect(nav.getByRole('link', { name: 'Gallery' })).toBeVisible();
     });
 
     test('Home link points to base path', async ({ page }) => {
@@ -74,6 +75,7 @@ test.describe('BaseLayout', () => {
       await expect(nav.getByRole('link', { name: 'Members' })).toHaveAttribute('href', `${BASE}/members`);
       await expect(nav.getByRole('link', { name: 'Discography' })).toHaveAttribute('href', `${BASE}/discography`);
       await expect(nav.getByRole('link', { name: 'Media' })).toHaveAttribute('href', `${BASE}/media`);
+      await expect(nav.getByRole('link', { name: 'Gallery' })).toHaveAttribute('href', `${BASE}/gallery`);
     });
   });
 

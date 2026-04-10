@@ -82,8 +82,8 @@ test.describe('Discography page', () => {
   });
 
   test('page uses BaseLayout (has nav and footer)', async ({ page }) => {
-    await expect(page.locator('header')).toBeVisible();
-    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
+    await expect(page.getByRole('contentinfo')).toBeVisible();
   });
 
   test('Discography nav link is marked as current page', async ({ page }) => {
