@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+const BASE = '/caco-web';
+
 test.describe('Media page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/media');
+    await page.goto(`${BASE}/media`);
   });
 
   test('renders at /media', async ({ page }) => {

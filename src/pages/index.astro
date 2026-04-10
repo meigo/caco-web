@@ -4,6 +4,7 @@ import albums from '@data/albums.json';
 import band from '@data/band.json';
 
 const featuredAlbums = albums.slice(0, 2);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title="Cacophony — Guitar Virtuosity Unleashed">
@@ -29,8 +30,8 @@ const featuredAlbums = albums.slice(0, 2);
           {band.genres.map((g) => <span class="genre-tag">{g}</span>)}
         </div>
         <div class="hero-ctas">
-          <a href="/history" class="btn btn-primary">Our Story</a>
-          <a href="/members" class="btn btn-secondary">The Duo</a>
+          <a href={`${base}/history`} class="btn btn-primary">Our Story</a>
+          <a href={`${base}/members`} class="btn btn-secondary">The Duo</a>
         </div>
       </div>
     </section>
@@ -49,7 +50,7 @@ const featuredAlbums = albums.slice(0, 2);
         <h2 class="section-title">Discography</h2>
         <div class="album-grid">
           {featuredAlbums.map((album) => (
-            <a href="/discography" class="album-card" aria-label={`${album.title} (${album.year}) — view discography`}>
+            <a href={`${base}/discography`} class="album-card" aria-label={`${album.title} (${album.year}) — view discography`}>
               <div class="album-art" aria-hidden="true">
                 <div class="album-art-inner">
                   <span class="album-year">{album.year}</span>
@@ -71,7 +72,7 @@ const featuredAlbums = albums.slice(0, 2);
           ))}
         </div>
         <div class="albums-cta">
-          <a href="/discography" class="btn btn-primary">Full Discography</a>
+          <a href={`${base}/discography`} class="btn btn-primary">Full Discography</a>
         </div>
       </div>
     </section>
@@ -81,12 +82,12 @@ const featuredAlbums = albums.slice(0, 2);
       <div class="container">
         <h2 class="section-title">Explore</h2>
         <div class="explore-grid">
-          <a href="/history" class="explore-card">
+          <a href={`${base}/history`} class="explore-card">
             <div class="explore-icon" aria-hidden="true">&#9876;</div>
             <h3>History</h3>
             <p>Trace the rise of the world's fastest guitar duo, from formation to their legendary recordings.</p>
           </a>
-          <a href="/members" class="explore-card">
+          <a href={`${base}/members`} class="explore-card">
             <div class="explore-icon" aria-hidden="true">&#9835;</div>
             <h3>Members</h3>
             <p>Meet Marty Friedman and Jason Becker — two virtuosos who redefined the limits of heavy metal guitar.</p>
