@@ -50,7 +50,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <h2 class="section-title">Discography</h2>
         <div class="album-grid">
           {featuredAlbums.map((album) => (
-            <a href={`${base}/discography`} class="album-card" aria-label={`${album.title} (${album.year}) — view discography`}>
+            <a href={`${base}/discography`} class="album-card">
               <div class="album-art" aria-hidden="true">
                 <div class="album-art-inner">
                   <span class="album-year">{album.year}</span>
@@ -109,7 +109,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     --c-accent-bright: #b8b8b8;
     --c-gold: #a0a0a0;
     --c-text: #f0f0f0;
-    --c-muted: #666666;
+    --c-muted: #999999;
     --c-string: rgba(180, 180, 180, 0.35);
     --font-heading: 'Space Mono', 'Courier New', monospace;
     --font-body: 'Roboto Mono', 'Courier New', monospace;
@@ -144,11 +144,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
   .btn-primary {
     background: var(--c-accent);
-    color: #fff;
+    color: #111;
     border-color: var(--c-accent);
   }
   .btn-primary:hover {
     background: var(--c-accent-bright);
+    color: #111;
     border-color: var(--c-accent-bright);
   }
   .btn-secondary {

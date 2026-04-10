@@ -35,28 +35,43 @@ test.describe('Media page', () => {
     await expect(page.getByRole('heading', { name: 'Music Videos', level: 2 })).toBeVisible();
   });
 
-  test('embeds videos from media.json', async ({ page }) => {
+  test('shows video thumbnails on load (facade — no iframes initially)', async ({ page }) => {
     const iframes = page.locator('iframe');
-    const count = await iframes.count();
+    await expect(iframes).toHaveCount(0);
+    const thumbnails = page.locator('.video-thumbnail');
+    const count = await thumbnails.count();
     expect(count).toBeGreaterThanOrEqual(4);
   });
 
-  test('video iframes use youtube-nocookie.com', async ({ page }) => {
-    const iframes = page.locator('iframe');
-    const count = await iframes.count();
+  test('shows play buttons for each video', async ({ page }) => {
+    const playBtns = page.locator('.play-btn');
+    const count = await playBtns.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+  });
+
+  test('play buttons have accessible labels', async ({ page }) => {
+    const playBtns = page.locator('.play-btn');
+    const count = await playBtns.count();
     for (let i = 0; i < count; i++) {
-      const src = await iframes.nth(i).getAttribute('src');
-      expect(src).toContain('youtube-nocookie.com');
+      const label = await playBtns.nth(i).getAttribute('aria-label');
+      expect(label).toMatch(/^Play /);
     }
   });
 
-  test('video iframes have accessible titles', async ({ page }) => {
-    const iframes = page.locator('iframe');
-    const count = await iframes.count();
-    for (let i = 0; i < count; i++) {
-      const title = await iframes.nth(i).getAttribute('title');
-      expect(title).toBeTruthy();
-    }
+  test('clicking play button loads youtube-nocookie iframe', async ({ page }) => {
+    const firstPlay = page.locator('.play-btn').first();
+    await firstPlay.click();
+    const iframe = page.locator('iframe').first();
+    await expect(iframe).toBeVisible();
+    const src = await iframe.getAttribute('src');
+    expect(src).toContain('youtube-nocookie.com');
+  });
+
+  test('clicking play button loads iframe with accessible title', async ({ page }) => {
+    await page.locator('.play-btn').first().click();
+    const iframe = page.locator('iframe').first();
+    const title = await iframe.getAttribute('title');
+    expect(title).toBeTruthy();
   });
 
   test('shows video titles in the page', async ({ page }) => {
