@@ -16,7 +16,9 @@ test.describe('History page', () => {
   });
 
   test('renders the main heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'The Story of Cacophony', level: 1 })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'The Story of Cacophony', level: 1 }),
+    ).toBeVisible();
   });
 
   test('shows formation year and origin', async ({ page }) => {
@@ -48,7 +50,6 @@ test.describe('History page', () => {
   });
 
   test('guitar section mentions shred techniques', async ({ page }) => {
-    const styleSection = page.locator('#style-heading').locator('..');
     // Check the parent section has sweep picking mentioned
     await expect(page.getByText('Sweep picking', { exact: false })).toBeVisible();
     await expect(page.getByText('Alternate picking', { exact: false })).toBeVisible();
@@ -68,7 +69,9 @@ test.describe('History page', () => {
   });
 
   test('shows influences and legacy section', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /Influences.*Legacy/i, level: 2 })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Influences.*Legacy/i, level: 2 }),
+    ).toBeVisible();
   });
 
   test('legacy section mentions Megadeth and ALS', async ({ page }) => {

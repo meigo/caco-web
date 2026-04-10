@@ -80,9 +80,7 @@ test.describe('Gallery page', () => {
   test('photos are rendered with grayscale CSS filter', async ({ page }) => {
     const firstImg = page.locator('.photo-img').first();
     await expect(firstImg).toBeVisible();
-    const filter = await firstImg.evaluate(
-      (el) => window.getComputedStyle(el).filter
-    );
+    const filter = await firstImg.evaluate((el) => window.getComputedStyle(el).filter);
     expect(filter).toContain('grayscale');
   });
 
@@ -99,9 +97,10 @@ test.describe('Gallery page', () => {
     if (await toggle.isVisible()) {
       await toggle.click();
     }
-    await expect(
-      page.locator('#nav-menu').getByRole('link', { name: 'Gallery' })
-    ).toHaveAttribute('aria-current', 'page');
+    await expect(page.locator('#nav-menu').getByRole('link', { name: 'Gallery' })).toHaveAttribute(
+      'aria-current',
+      'page',
+    );
   });
 
   test('page has no horizontal scroll on mobile', async ({ page }) => {
@@ -131,16 +130,12 @@ test.describe('Gallery page', () => {
 
   test('uses monospace heading font matching index page style', async ({ page }) => {
     const heading = page.getByRole('heading', { name: /Gallery/i });
-    const fontFamily = await heading.evaluate(
-      (el) => window.getComputedStyle(el).fontFamily
-    );
+    const fontFamily = await heading.evaluate((el) => window.getComputedStyle(el).fontFamily);
     expect(fontFamily.toLowerCase()).toMatch(/space mono|courier/);
   });
 
   test('uses dark monochrome background matching index page style', async ({ page }) => {
-    const bg = await page.evaluate(
-      () => window.getComputedStyle(document.body).backgroundColor
-    );
+    const bg = await page.evaluate(() => window.getComputedStyle(document.body).backgroundColor);
     // Should be near-black (rgb(0,0,0) or very dark), not navy/purple
     expect(bg).toMatch(/rgb\(0,\s*0,\s*0\)|rgb\(10,\s*10,\s*10\)/);
   });

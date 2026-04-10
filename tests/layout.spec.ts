@@ -19,7 +19,10 @@ test.describe('BaseLayout', () => {
 
     test('has Open Graph meta tags', async ({ page }) => {
       await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', /.+/);
-      await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', /.+/);
+      await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+        'content',
+        /.+/,
+      );
       await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'website');
     });
 
@@ -71,11 +74,26 @@ test.describe('BaseLayout', () => {
         await toggle.click();
       }
       const nav = page.locator('#nav-menu');
-      await expect(nav.getByRole('link', { name: 'History' })).toHaveAttribute('href', `${BASE}/history`);
-      await expect(nav.getByRole('link', { name: 'Members' })).toHaveAttribute('href', `${BASE}/members`);
-      await expect(nav.getByRole('link', { name: 'Discography' })).toHaveAttribute('href', `${BASE}/discography`);
-      await expect(nav.getByRole('link', { name: 'Media' })).toHaveAttribute('href', `${BASE}/media`);
-      await expect(nav.getByRole('link', { name: 'Gallery' })).toHaveAttribute('href', `${BASE}/gallery`);
+      await expect(nav.getByRole('link', { name: 'History' })).toHaveAttribute(
+        'href',
+        `${BASE}/history`,
+      );
+      await expect(nav.getByRole('link', { name: 'Members' })).toHaveAttribute(
+        'href',
+        `${BASE}/members`,
+      );
+      await expect(nav.getByRole('link', { name: 'Discography' })).toHaveAttribute(
+        'href',
+        `${BASE}/discography`,
+      );
+      await expect(nav.getByRole('link', { name: 'Media' })).toHaveAttribute(
+        'href',
+        `${BASE}/media`,
+      );
+      await expect(nav.getByRole('link', { name: 'Gallery' })).toHaveAttribute(
+        'href',
+        `${BASE}/gallery`,
+      );
     });
   });
 
@@ -103,8 +121,14 @@ test.describe('BaseLayout', () => {
 
     test('member Wikipedia links open in a new tab', async ({ page }) => {
       const footer = page.locator('footer');
-      await expect(footer.getByRole('link', { name: 'Marty Friedman' })).toHaveAttribute('target', '_blank');
-      await expect(footer.getByRole('link', { name: 'Jason Becker' })).toHaveAttribute('target', '_blank');
+      await expect(footer.getByRole('link', { name: 'Marty Friedman' })).toHaveAttribute(
+        'target',
+        '_blank',
+      );
+      await expect(footer.getByRole('link', { name: 'Jason Becker' })).toHaveAttribute(
+        'target',
+        '_blank',
+      );
     });
   });
 
