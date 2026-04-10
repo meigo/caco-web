@@ -121,17 +121,17 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
 <style>
   /* ── Local tokens ── */
   :root {
-    --d-bg: #0a0a0c;
-    --d-surface: #111116;
-    --d-surface-2: #18181f;
-    --d-border: #2a2a38;
-    --d-accent: #c0392b;
-    --d-accent-bright: #e74c3c;
-    --d-gold: #d4a017;
-    --d-text: #e8e8f0;
-    --d-muted: #7a7a96;
+    --d-bg: #000000;
+    --d-surface: #111111;
+    --d-surface-2: #1a1a1a;
+    --d-border: #2a2a2a;
+    --d-accent: #909090;
+    --d-accent-bright: #b8b8b8;
+    --d-gold: #a0a0a0;
+    --d-text: #f0f0f0;
+    --d-muted: #666666;
     --d-max-w: 1100px;
-    --d-font-heading: 'Georgia', 'Times New Roman', serif;
+    --d-font-heading: 'Space Mono', 'Courier New', monospace;
   }
 
   .discography-page {
@@ -172,15 +172,15 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 120%, #1a0505 0%, var(--d-bg) 65%);
+    background: radial-gradient(ellipse at 50% 120%, #0f0f0f 0%, var(--d-bg) 65%);
   }
 
   .hero-grid {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(192, 57, 43, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(192, 57, 43, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(180, 180, 180, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(180, 180, 180, 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     transform: perspective(600px) rotateX(20deg) scaleY(1.4);
     transform-origin: bottom center;
@@ -193,7 +193,7 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
     transform: translateX(-50%);
     width: 60%;
     height: 50%;
-    background: radial-gradient(ellipse, rgba(192, 57, 43, 0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(180, 180, 180, 0.08) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -218,7 +218,7 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
     line-height: 0.95;
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fff 30%, #c0392b 90%);
+    background: linear-gradient(135deg, #fff 30%, #888888 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -264,7 +264,7 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
         transparent 1px,
         transparent 12px
       ),
-      linear-gradient(135deg, #0f0507, #1a0a0a);
+      linear-gradient(135deg, #050505, #0a0a0a);
     border: 1px solid var(--d-border);
     display: flex;
     align-items: center;
@@ -278,7 +278,7 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 80%, rgba(192, 57, 43, 0.25) 0%, transparent 65%);
+    background: radial-gradient(ellipse at 50% 80%, rgba(180, 180, 180, 0.08) 0%, transparent 65%);
   }
 
   .album-art-inner {
@@ -296,7 +296,7 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
     font-family: var(--d-font-heading);
     font-size: 5rem;
     font-weight: 900;
-    color: rgba(192, 57, 43, 0.45);
+    color: rgba(180, 180, 180, 0.4);
     letter-spacing: -0.05em;
     line-height: 1;
   }
@@ -403,7 +403,7 @@ const albumDescriptions: Record<string, { style: string; significance: string }>
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.2rem 2rem;
     padding: 1rem;
-    background: rgba(192, 57, 43, 0.04);
+    background: rgba(180, 180, 180, 0.03);
     border: 1px solid var(--d-border);
   }
 

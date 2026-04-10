@@ -100,18 +100,18 @@ const featuredAlbums = albums.slice(0, 2);
 <style>
   /* ── Design tokens ── */
   :root {
-    --c-bg: #0a0a0c;
-    --c-surface: #111116;
-    --c-surface-2: #18181f;
-    --c-border: #2a2a38;
-    --c-accent: #c0392b;
-    --c-accent-bright: #e74c3c;
-    --c-gold: #d4a017;
-    --c-text: #e8e8f0;
-    --c-muted: #7a7a96;
-    --c-string: rgba(192, 57, 43, 0.35);
-    --font-heading: 'Georgia', 'Times New Roman', serif;
-    --font-body: system-ui, -apple-system, sans-serif;
+    --c-bg: #000000;
+    --c-surface: #111111;
+    --c-surface-2: #1a1a1a;
+    --c-border: #2a2a2a;
+    --c-accent: #909090;
+    --c-accent-bright: #b8b8b8;
+    --c-gold: #a0a0a0;
+    --c-text: #f0f0f0;
+    --c-muted: #666666;
+    --c-string: rgba(180, 180, 180, 0.35);
+    --font-heading: 'Space Mono', 'Courier New', monospace;
+    --font-body: 'Roboto Mono', 'Courier New', monospace;
     --max-w: 1100px;
   }
 
@@ -197,14 +197,14 @@ const featuredAlbums = albums.slice(0, 2);
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 120%, #1a0505 0%, var(--c-bg) 65%);
+    background: radial-gradient(ellipse at 50% 120%, #0f0f0f 0%, var(--c-bg) 65%);
   }
   .hero-grid {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(192, 57, 43, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(192, 57, 43, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(180, 180, 180, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(180, 180, 180, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
     transform: perspective(600px) rotateX(20deg) scaleY(1.4);
     transform-origin: bottom center;
@@ -216,7 +216,7 @@ const featuredAlbums = albums.slice(0, 2);
     transform: translateX(-50%);
     width: 70%;
     height: 50%;
-    background: radial-gradient(ellipse, rgba(192, 57, 43, 0.18) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(180, 180, 180, 0.12) 0%, transparent 70%);
     pointer-events: none;
   }
   /* Animated guitar strings */
@@ -267,11 +267,11 @@ const featuredAlbums = albums.slice(0, 2);
   }
   .hero-title-main {
     display: block;
-    background: linear-gradient(135deg, #fff 30%, #c0392b 80%);
+    background: linear-gradient(135deg, #fff 30%, #888888 80%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 40px rgba(192, 57, 43, 0.4));
+    filter: drop-shadow(0 0 40px rgba(180, 180, 180, 0.3));
   }
   .hero-tagline {
     font-size: clamp(1rem, 2.5vw, 1.35rem);
@@ -349,7 +349,7 @@ const featuredAlbums = albums.slice(0, 2);
         transparent 1px,
         transparent 12px
       ),
-      linear-gradient(135deg, #0f0507, #1a0a0a);
+      linear-gradient(135deg, #050505, #0a0a0a);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -360,7 +360,7 @@ const featuredAlbums = albums.slice(0, 2);
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 80%, rgba(192, 57, 43, 0.2) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 80%, rgba(180, 180, 180, 0.08) 0%, transparent 60%);
   }
   .album-art-inner {
     position: relative;
@@ -371,7 +371,7 @@ const featuredAlbums = albums.slice(0, 2);
     font-family: var(--font-heading);
     font-size: 4rem;
     font-weight: 900;
-    color: rgba(192, 57, 43, 0.5);
+    color: rgba(180, 180, 180, 0.4);
     letter-spacing: -0.05em;
     line-height: 1;
   }

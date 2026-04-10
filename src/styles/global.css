@@ -3,8 +3,8 @@
    Heavy metal aesthetic: dark, aggressive, powerful
    ========================================================================== */
 
-/* Google Fonts */
-@import 'https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&display=swap';
+/* Google Fonts — monospaced */
+@import 'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,300;0,400;0,600;1,300&display=swap';
 
 /* ==========================================================================
    CSS Custom Properties
@@ -31,29 +31,29 @@
   /* Aliases */
   --color-text: var(--color-text-primary);
 
-  /* Gold accents */
-  --color-accent-gold: #c9a84c;
-  --color-accent-gold-light: #e8c86a;
-  --color-accent-gold-dark: #9a7a32;
+  /* Monochrome accents */
+  --color-accent-gold: #a0a0a0;
+  --color-accent-gold-light: #c8c8c8;
+  --color-accent-gold-dark: #606060;
 
   /* Aliases */
   --color-accent: var(--color-accent-gold);
   --color-accent-hover: var(--color-accent-gold-light);
 
-  /* Red accents */
-  --color-accent-red: #8b0000;
-  --color-accent-red-light: #c00;
-  --color-accent-red-bright: #ff1a1a;
+  /* Muted accents (formerly red) */
+  --color-accent-red: #555;
+  --color-accent-red-light: #888;
+  --color-accent-red-bright: #aaa;
 
   /* Borders */
   --color-border: #2a2a2a;
-  --color-border-accent: #3a3020;
+  --color-border-accent: #333;
 
   /* --- Typography --- */
-  --font-heading: 'Cinzel Decorative', 'Times New Roman', serif;
-  --font-body: 'Barlow', 'Helvetica Neue', sans-serif;
+  --font-heading: 'Space Mono', 'Courier New', monospace;
+  --font-body: 'Roboto Mono', 'Courier New', monospace;
   --font-sans: var(--font-body);
-  --font-mono: 'Courier New', monospace;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
 
   /* Type scale */
   --text-xs: 0.75rem;
@@ -193,13 +193,13 @@ p {
 }
 
 a {
-  color: var(--color-accent-gold);
+  color: var(--color-text-secondary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-accent-gold-light);
+  color: var(--color-text-primary);
 }
 
 img,
@@ -252,9 +252,9 @@ video {
 }
 
 .btn--primary {
-  background-color: var(--color-accent-gold);
+  background-color: var(--color-text-primary);
   color: var(--color-bg-primary);
-  border-color: var(--color-accent-gold);
+  border-color: var(--color-text-primary);
 }
 
 .btn--primary:hover {
@@ -265,13 +265,14 @@ video {
 
 .btn--secondary {
   background-color: transparent;
-  color: var(--color-accent-gold);
-  border-color: var(--color-accent-gold);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg-primary);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent-gold);
 }
 
 .btn--danger {
@@ -288,11 +289,11 @@ video {
 /* Text utilities */
 
 .text-gold {
-  color: var(--color-accent-gold);
+  color: var(--color-accent-gold-light);
 }
 
 .text-red {
-  color: var(--color-accent-red-light);
+  color: var(--color-text-secondary);
 }
 
 .text-muted {
@@ -308,6 +309,6 @@ video {
 .divider {
   border: none;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--color-accent-gold), transparent);
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
   margin-block: var(--space-8);
 }

@@ -6,12 +6,17 @@ const css = readFileSync(resolve(import.meta.dirname, 'global.css'), 'utf-8');
 
 describe('global.css design system', () => {
   describe('Google Fonts', () => {
-    it('imports Cinzel Decorative for headings', () => {
-      expect(css).toContain('Cinzel+Decorative');
+    it('imports Space Mono for headings', () => {
+      expect(css).toContain('Space+Mono');
     });
 
-    it('imports Barlow for body text', () => {
-      expect(css).toContain('Barlow');
+    it('imports Roboto Mono for body text', () => {
+      expect(css).toContain('Roboto+Mono');
+    });
+
+    it('uses monospaced font families', () => {
+      expect(css).toContain("--font-heading: 'Space Mono'");
+      expect(css).toContain("--font-body: 'Roboto Mono'");
     });
   });
 
