@@ -1,28 +1,40 @@
 {
   "videos": [
     {
-      "id": "9byfTJZBBAM",
+      "id": "Vo7odAIog3Y",
       "title": "Speed Metal Symphony (Full Album)",
       "description": "Cacophony's debut album Speed Metal Symphony (1987) in full.",
       "type": "album"
     },
     {
-      "id": "oPr8zFdZLaA",
+      "id": "5cF3-xKMGTM",
       "title": "Go Off! (Full Album)",
       "description": "Cacophony's second album Go Off! (1988) in full.",
       "type": "album"
     },
     {
-      "id": "hCuMWrfXG4E",
+      "id": "tI__8UKlWCg",
       "title": "The Ninja",
       "description": "Live performance of The Ninja from Speed Metal Symphony.",
       "type": "live"
     },
     {
-      "id": "7Kd8YourFxQ",
+      "id": "Y8-4Y3rahwk",
       "title": "Concerto",
       "description": "Marty Friedman and Jason Becker performing Concerto.",
       "type": "performance"
+    },
+    {
+      "id": "eWhLjPccrsM",
+      "title": "Guitar Duel — Live in Japan 1989",
+      "description": "Jason Becker and Marty Friedman's legendary guitar duel from their final Japan tour.",
+      "type": "live"
+    },
+    {
+      "id": "Mc0mlt07UAU",
+      "title": "Cacophony 1989 Interview — Japan",
+      "description": "Rare 1989 interview with Cacophony in Japan, plus live footage of Desert Island and Black Cat.",
+      "type": "interview"
     }
   ]
 }
