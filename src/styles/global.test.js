@@ -87,11 +87,15 @@ describe('global.css design system', () => {
 
   describe('headings', () => {
     it('applies uppercase text transform to all headings', () => {
-      expect(css).toMatch(/h1,\s*\nh2,\s*\nh3,\s*\nh4,\s*\nh5,\s*\nh6\s*\{[^}]*text-transform:\s*uppercase/s);
+      expect(css).toMatch(
+        /h1,\s*\nh2,\s*\nh3,\s*\nh4,\s*\nh5,\s*\nh6\s*\{[^}]*text-transform:\s*uppercase/s,
+      );
     });
 
     it('applies overflow-wrap to prevent heading overflow', () => {
-      expect(css).toMatch(/h1,\s*\nh2,\s*\nh3,\s*\nh4,\s*\nh5,\s*\nh6\s*\{[^}]*overflow-wrap:\s*break-word/s);
+      expect(css).toMatch(
+        /h1,\s*\nh2,\s*\nh3,\s*\nh4,\s*\nh5,\s*\nh6\s*\{[^}]*overflow-wrap:\s*break-word/s,
+      );
     });
   });
 

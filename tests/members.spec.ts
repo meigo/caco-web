@@ -116,7 +116,9 @@ test.describe('Members page', () => {
       if (await toggle.isVisible()) {
         await toggle.click();
       }
-      await expect(page.locator('#nav-menu').getByRole('link', { name: 'Members' })).toHaveAttribute('aria-current', 'page');
+      await expect(
+        page.locator('#nav-menu').getByRole('link', { name: 'Members' }),
+      ).toHaveAttribute('aria-current', 'page');
     });
 
     test('page has no horizontal scroll on mobile', async ({ page }) => {

@@ -8,22 +8,22 @@ describe('albums.json', () => {
   });
 
   it('contains Speed Metal Symphony', () => {
-    const album = albums.find(a => a.title === 'Speed Metal Symphony');
+    const album = albums.find((a) => a.title === 'Speed Metal Symphony');
     expect(album).toBeDefined();
   });
 
   it('contains Go Off!', () => {
-    const album = albums.find(a => a.title === 'Go Off!');
+    const album = albums.find((a) => a.title === 'Go Off!');
     expect(album).toBeDefined();
   });
 
   it('Speed Metal Symphony was released in 1987', () => {
-    const album = albums.find(a => a.title === 'Speed Metal Symphony');
+    const album = albums.find((a) => a.title === 'Speed Metal Symphony');
     expect(album.year).toBe(1987);
   });
 
   it('Go Off! was released in 1988', () => {
-    const album = albums.find(a => a.title === 'Go Off!');
+    const album = albums.find((a) => a.title === 'Go Off!');
     expect(album.year).toBe(1988);
   });
 

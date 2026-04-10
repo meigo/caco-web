@@ -61,14 +61,16 @@ test.describe('Media page', () => {
 
   test('shows video titles in the page', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'The Ninja', level: 3 })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Speed Metal Symphony/, level: 3 })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Speed Metal Symphony/, level: 3 }),
+    ).toBeVisible();
     await expect(page.getByRole('heading', { name: /Go Off!/, level: 3 })).toBeVisible();
   });
 
   test('video grid is responsive — single column on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     const grid = page.locator('.video-grid').first();
-    const style = await grid.evaluate(el => window.getComputedStyle(el).gridTemplateColumns);
+    const style = await grid.evaluate((el) => window.getComputedStyle(el).gridTemplateColumns);
     // On mobile, grid should resolve to a single column (no repeat)
     expect(style).not.toMatch(/\d+px \d+px/);
   });

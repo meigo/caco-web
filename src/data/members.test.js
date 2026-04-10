@@ -8,12 +8,12 @@ describe('members.json', () => {
   });
 
   it('contains Marty Friedman', () => {
-    const marty = members.find(m => m.name === 'Marty Friedman');
+    const marty = members.find((m) => m.name === 'Marty Friedman');
     expect(marty).toBeDefined();
   });
 
   it('contains Jason Becker', () => {
-    const jason = members.find(m => m.name === 'Jason Becker');
+    const jason = members.find((m) => m.name === 'Jason Becker');
     expect(jason).toBeDefined();
   });
 
