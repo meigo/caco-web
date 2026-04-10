@@ -181,17 +181,17 @@ const supportingMembers = [
 <style>
   /* ── Design tokens ── */
   :root {
-    --c-bg: #0a0a0c;
-    --c-surface: #111116;
-    --c-surface-2: #18181f;
-    --c-border: #2a2a38;
-    --c-accent: #c0392b;
-    --c-accent-bright: #e74c3c;
-    --c-gold: #d4a017;
-    --c-text: #e8e8f0;
-    --c-muted: #7a7a96;
-    --font-heading: 'Georgia', 'Times New Roman', serif;
-    --font-body: system-ui, -apple-system, sans-serif;
+    --c-bg: #000000;
+    --c-surface: #111111;
+    --c-surface-2: #1a1a1a;
+    --c-border: #2a2a2a;
+    --c-accent: #909090;
+    --c-accent-bright: #b8b8b8;
+    --c-gold: #a0a0a0;
+    --c-text: #f0f0f0;
+    --c-muted: #666666;
+    --font-heading: 'Space Mono', 'Courier New', monospace;
+    --font-body: 'Roboto Mono', 'Courier New', monospace;
     --max-w: 1100px;
   }
 
@@ -233,7 +233,7 @@ const supportingMembers = [
   .page-hero {
     padding: 5rem 0 3.5rem;
     background:
-      radial-gradient(ellipse at 50% 100%, rgba(192, 57, 43, 0.12) 0%, transparent 65%),
+      radial-gradient(ellipse at 50% 100%, rgba(180, 180, 180, 0.06) 0%, transparent 65%),
       var(--c-bg);
     border-bottom: 1px solid var(--c-border);
   }
@@ -252,7 +252,7 @@ const supportingMembers = [
     line-height: 1;
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fff 40%, #c0392b 90%);
+    background: linear-gradient(135deg, #fff 40%, #888888 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -312,12 +312,12 @@ const supportingMembers = [
     flex-shrink: 0;
   }
   .marty-avatar {
-    background: radial-gradient(135deg, rgba(192, 57, 43, 0.3), rgba(192, 57, 43, 0.1));
-    border: 2px solid rgba(192, 57, 43, 0.5);
+    background: radial-gradient(135deg, rgba(180, 180, 180, 0.2), rgba(180, 180, 180, 0.05));
+    border: 2px solid rgba(180, 180, 180, 0.4);
   }
   .jason-avatar {
-    background: radial-gradient(135deg, rgba(212, 160, 23, 0.3), rgba(212, 160, 23, 0.1));
-    border: 2px solid rgba(212, 160, 23, 0.5);
+    background: radial-gradient(135deg, rgba(180, 180, 180, 0.2), rgba(180, 180, 180, 0.05));
+    border: 2px solid rgba(180, 180, 180, 0.4);
   }
   .avatar-initials {
     font-family: var(--font-heading);
