@@ -19,6 +19,10 @@ test.describe('Media page', () => {
     await expect(page.getByRole('heading', { name: 'Media', level: 1 })).toBeVisible();
   });
 
+  test('shows page label above the heading', async ({ page }) => {
+    await expect(page.locator('.page-label')).toContainText('Cacophony');
+  });
+
   test('shows hero subtitle', async ({ page }) => {
     await expect(page.locator('.hero-sub')).toContainText('Live performances');
   });
